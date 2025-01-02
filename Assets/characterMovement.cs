@@ -14,9 +14,9 @@ public class characterMovement : MonoBehaviour
     public float defaultHeight = 2f;
     public float crouchHeight = 1f;
     public float crouchSpeed = 3f;
-
+    
     private Vector3 moveDirection = Vector3.zero;
-    private float rotationX = 0;
+    private float rotationX;
     private CharacterController characterController;
 
     private bool canMove = true;
@@ -30,8 +30,8 @@ public class characterMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        Vector3 forward = Vector3.forward;  //transform.TransformDirection(Vector3.forward);
+        Vector3 right   = Vector3.right;    //transform.TransformDirection(Vector3.right);
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
@@ -46,7 +46,7 @@ public class characterMovement : MonoBehaviour
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.R) && canMove)
+        if (false && Input.GetKey(KeyCode.R) && canMove)
         {
             characterController.height = crouchHeight;
             walkSpeed = crouchSpeed;
@@ -61,7 +61,17 @@ public class characterMovement : MonoBehaviour
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
+        
+        Vector3 horizontalMovement = new Vector3(moveDirection.x, 0, moveDirection.z);
 
+        if (horizontalMovement.sqrMagnitude > 0.01f)
+        {
+            // Calculate the target rotation
+            Quaternion targetRotation = Quaternion.LookRotation(horizontalMovement.normalized, Vector3.up);
+
+            // Smoothly rotate towards the target direction
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360f * Time.deltaTime);
+        }
         // if (canMove)
         // {
         //     rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
