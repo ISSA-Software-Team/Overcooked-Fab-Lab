@@ -21,17 +21,32 @@ public class characterMovement : MonoBehaviour
 
     private bool canMove = true;
 
+    [SerializeField] private GameObject GameStateManagerObject;
+    private GameStateManager GameStateManagerScript;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        GameStateManagerScript = GameStateManagerObject.GetComponent<GameStateManager>();
     }
 
     void Update()
     {
-        Vector3 forward = Vector3.forward;  //transform.TransformDirection(Vector3.forward);
-        Vector3 right   = Vector3.right;    //transform.TransformDirection(Vector3.right);
+        if(GameStateManagerScript.Get_Game_State() == 3) //check if in moving state
+        {
+            Character_Move();
+        }
+        
+    }
+
+
+    private void Character_Move()
+    {
+        // movement
+        Vector3 forward = Vector3.forward;  
+        Vector3 right   = Vector3.right;    
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
@@ -61,23 +76,14 @@ public class characterMovement : MonoBehaviour
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
-        
+
+        //rotation
         Vector3 horizontalMovement = new Vector3(moveDirection.x, 0, moveDirection.z);
 
         if (horizontalMovement.sqrMagnitude > 0.01f)
         {
-            // Calculate the target rotation
             Quaternion targetRotation = Quaternion.LookRotation(horizontalMovement.normalized, Vector3.up);
-
-            // Smoothly rotate towards the target direction
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360f * Time.deltaTime);
         }
-        // if (canMove)
-        // {
-        //     rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-        //     rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-        //     // playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-        //     transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        // }
     }
 }

@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Etching
+  - GameStateManager
   layers:
   - Default
   - TransparentFX
@@ -38,6 +40,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Acid low
+    uniqueID: 116718733
+    locked: 0
+  - name: PR layer
+    uniqueID: 1314889183
+    locked: 0
+  - name: Silicon layer
+    uniqueID: 3013299301
+    locked: 0
+  - name: Acid high
+    uniqueID: 2574359977
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
