@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class EtchingCounter : BaseCounter
+public class CleaningCounter : BaseCounter
 {
 
-    [SerializeField] private FabObjectSO etchedFabObjectSO;
+    [SerializeField] private CleaningRecipeSO[] cleaningRecipeSOArray ;
 
     public override void Interact(Player player)
     {
@@ -36,10 +36,23 @@ public class EtchingCounter : BaseCounter
         if(HasFabObject())
         {
             // do etching minigame
+            FabObjectSO outputFabObjectSO = GetOutputForInput(GetFabObject().GetFabObjectSO());
             GetFabObject().DestroySelf();
-            FabObject.SpawnFabObject(etchedFabObjectSO, this);
+            FabObject.SpawnFabObject(outputFabObjectSO, this);
 
         }
+    }
+
+    private FabObjectSO GetOutputForInput(FabObjectSO inputCleaningObjectSO)
+    {
+        foreach (CleaningRecipeSO cleaningRecipeSO in cleaningRecipeSOArray)
+        {
+            if(cleaningRecipeSO.input == inputCleaningObjectSO )
+            {
+                return cleaningRecipeSO.output;
+            }
+        }
+        return null;
     }
 
 }

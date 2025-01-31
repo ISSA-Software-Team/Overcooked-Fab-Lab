@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8401449199269561385, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}
       propertyPath: m_Name
-      value: EtchingCounter
+      value: CleaningCounter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -228,7 +228,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 6657627344074047070}
-  etchedFabObjectSO: {fileID: 11400000, guid: a93ab62f11bef9b4ba0987c5257856e4, type: 2}
+  cleaningRecipeSOArray:
+  - {fileID: 11400000, guid: 86778402c7b1c84409eaef223e4b2f2b, type: 2}
+  - {fileID: 11400000, guid: db1c139c904fdfb4a816b5d8e3eda8db, type: 2}
 --- !u!4 &6657627344074047070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8857450968592449025, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}
