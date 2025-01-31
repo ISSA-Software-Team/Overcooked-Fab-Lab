@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52dfccd252f1430488bdd7d47826efc9, type: 2}
+  - {fileID: 2100000, guid: 65942f30034571e489b6ef60b910c4ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8657840225296690110}
   - component: {fileID: -8898332551926220218}
   m_Layer: 0
-  m_Name: OxidizedWafer
+  m_Name: EtchedWafer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,4 +131,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1dd674a9262fb4ca355279bfb55151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fabObjectSO: {fileID: 11400000, guid: 6ec9cd1ee4c0a0b4ca4740752ffaf90e, type: 2}
+  fabObjectSO: {fileID: 11400000, guid: 5c14249b240ad8e47bd9fe9a047e3d17, type: 2}

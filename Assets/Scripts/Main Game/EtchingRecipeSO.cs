@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class EtchingRecipeSO : ScriptableObject
+public class CleaningRecipeSO : ScriptableObject
 {
     public FabObjectSO input;
     public FabObjectSO output;
