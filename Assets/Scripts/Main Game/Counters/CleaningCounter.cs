@@ -36,21 +36,16 @@ public class CleaningCounter : BaseCounter
 
     private bool HasRecipeWithInput(FabObjectSO inputCleaningObjectSO)
     {
-        foreach (CleaningRecipeSO cleaningRecipeSO in cleaningRecipeSOArray)
-        {
-            if(cleaningRecipeSO.input == inputCleaningObjectSO )
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+        CleaningRecipeSO cleaningRecipeSO = GetCleaningRecipeSOWithInput(inputCleaningObjectSO);
+        return cleaningRecipeSO != null;
+    } 
 
     public override void InteractAlternate(Player player)
     {
         if(HasFabObject() && HasRecipeWithInput(GetFabObject().GetFabObjectSO()))
         {
             // do etching minigame
+            // if complete minigame do the next 3 lines to output next wafer
             FabObjectSO outputFabObjectSO = GetOutputForInput(GetFabObject().GetFabObjectSO());
             GetFabObject().DestroySelf();
             FabObject.SpawnFabObject(outputFabObjectSO, this);
@@ -60,11 +55,24 @@ public class CleaningCounter : BaseCounter
 
     private FabObjectSO GetOutputForInput(FabObjectSO inputCleaningObjectSO)
     {
+
         foreach (CleaningRecipeSO cleaningRecipeSO in cleaningRecipeSOArray)
         {
             if(cleaningRecipeSO.input == inputCleaningObjectSO )
             {
                 return cleaningRecipeSO.output;
+            }
+        }
+        return null;
+    }
+
+    private CleaningRecipeSO GetCleaningRecipeSOWithInput(FabObjectSO inputFabObjectSO)
+    {
+        foreach (CleaningRecipeSO cleaningRecipeSO in cleaningRecipeSOArray)
+        {
+            if(cleaningRecipeSO.input == inputFabObjectSO )
+            {
+                return cleaningRecipeSO;
             }
         }
         return null;

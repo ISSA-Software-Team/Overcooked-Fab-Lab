@@ -9,6 +9,8 @@ public class Player : MonoBehaviour, IFabObjectParent
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
 
+    public event EventHandler OnPickedSomething; 
+
     public class OnSelectedCounterChangedEventArgs : EventArgs 
     {
         public BaseCounter selectedCounter;  
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour, IFabObjectParent
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
+        if(!GameManager.Instance.IsGamePlaying()) return;
         if(selectedCounter != null)
         {
             selectedCounter.Interact(this);
@@ -49,6 +52,7 @@ public class Player : MonoBehaviour, IFabObjectParent
 
     private void GameInput_OnInteractAlternateAction(object sender, System.EventArgs e)
     {
+        if(!GameManager.Instance.IsGamePlaying()) return;
         if(selectedCounter != null)
         {
             selectedCounter.InteractAlternate(this);
@@ -142,7 +146,9 @@ public class Player : MonoBehaviour, IFabObjectParent
         isWalking = moveDir != Vector3.zero;
 
         float rotateSpeed = 10f;
-        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime*rotateSpeed);
+        if (isWalking) {
+            transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime*rotateSpeed);
+        }   
 
     }
 
@@ -163,6 +169,10 @@ public class Player : MonoBehaviour, IFabObjectParent
     public void SetFabObject(FabObject fabObject)
     {
         this.fabObject = fabObject;
+        if(fabObject != null)
+        {
+            OnPickedSomething?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public FabObject GetFabObject()

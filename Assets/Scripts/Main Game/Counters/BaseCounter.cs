@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BaseCounter : MonoBehaviour, IFabObjectParent
@@ -6,6 +7,9 @@ public class BaseCounter : MonoBehaviour, IFabObjectParent
     [SerializeField] private Transform counterTopPoint;
     
     private FabObject fabObject;
+
+    public static event EventHandler OnAnyObjectPlacedHere;
+
 
     public virtual void Interact(Player player)
     {
@@ -26,6 +30,11 @@ public class BaseCounter : MonoBehaviour, IFabObjectParent
     public void SetFabObject(FabObject fabObject)
     {
         this.fabObject = fabObject;
+        
+        if(fabObject != null)
+        {
+            OnAnyObjectPlacedHere?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public FabObject GetFabObject()
