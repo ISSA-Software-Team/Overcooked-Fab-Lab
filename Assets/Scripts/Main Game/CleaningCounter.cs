@@ -11,11 +11,14 @@ public class CleaningCounter : BaseCounter
         {
             if(player.HasFabObject())
             {
-                player.GetFabObject().SetFabObjectParent(this);
+                if(HasRecipeWithInput(player.GetFabObject().GetFabObjectSO()))
+                {
+                    player.GetFabObject().SetFabObjectParent(this); // take it
+                }
             }
             else
             {
-
+                
             }
         }
         else
@@ -31,9 +34,21 @@ public class CleaningCounter : BaseCounter
         }
     }
 
+    private bool HasRecipeWithInput(FabObjectSO inputCleaningObjectSO)
+    {
+        foreach (CleaningRecipeSO cleaningRecipeSO in cleaningRecipeSOArray)
+        {
+            if(cleaningRecipeSO.input == inputCleaningObjectSO )
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public override void InteractAlternate(Player player)
     {
-        if(HasFabObject())
+        if(HasFabObject() && HasRecipeWithInput(GetFabObject().GetFabObjectSO()))
         {
             // do etching minigame
             FabObjectSO outputFabObjectSO = GetOutputForInput(GetFabObject().GetFabObjectSO());
