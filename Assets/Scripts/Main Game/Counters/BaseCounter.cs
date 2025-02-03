@@ -10,6 +10,10 @@ public class BaseCounter : MonoBehaviour, IFabObjectParent
 
     public static event EventHandler OnAnyObjectPlacedHere;
 
+    public static void ResetStaticData()
+    {
+        OnAnyObjectPlacedHere = null;
+    }
 
     public virtual void Interact(Player player)
     {
