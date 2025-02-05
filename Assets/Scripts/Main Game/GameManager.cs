@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
                 if(countdownToStartTimer < 0f)
                 {
                     state = State.GamePlaying;
+                    GameInputs.Instance.EnablePlayerActions();
+                    Time.timeScale = 1f;
                     gamePlayingTimer = gamePlayingTimerMax;
                     OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }

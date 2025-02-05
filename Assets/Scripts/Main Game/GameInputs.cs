@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,9 +13,12 @@ public class GameInputs : MonoBehaviour
     public event EventHandler OnInteractAlternateAction;
     public event EventHandler OnPauseAction;
 
+    private bool playerActionEnabled;
+
     private void Awake()
     {
         Instance = this;
+        playerActionEnabled = true;
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
 
@@ -39,21 +43,32 @@ public class GameInputs : MonoBehaviour
 
     private void InteractAlternate_performed(InputAction.CallbackContext context)
     {
-        OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
+        if(playerActionEnabled) OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnInteractAction?.Invoke(this, EventArgs.Empty);
+        if(playerActionEnabled) OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMovementVectorNormalized()
     {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
         
-        inputVector = inputVector.normalized;
+        if(playerActionEnabled)  inputVector = inputVector.normalized;
+        else                     inputVector = Vector2.zero;
 
         return inputVector;
+    }
+
+    public void DisablePlayerActions()
+    {
+        playerActionEnabled = false;
+    }
+
+    public void EnablePlayerActions()
+    {
+        playerActionEnabled = true;
     }
 
 }
