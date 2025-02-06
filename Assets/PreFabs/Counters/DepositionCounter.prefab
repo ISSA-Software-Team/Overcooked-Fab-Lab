@@ -64,7 +64,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8401449199269561385, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3046402251949177235}
+      addedObject: {fileID: 7413861498368051233}
   m_SourcePrefab: {fileID: 100100000, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}
 --- !u!4 &1188830202844855089 stripped
 Transform:
@@ -76,7 +76,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8401449199269561385, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}
   m_PrefabInstance: {fileID: 2778536740083826783}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3046402251949177235
+--- !u!114 &7413861498368051233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,12 +85,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5915664998216123510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cdc5eb862e0a5245ad87afc8c105e90, type: 3}
+  m_Script: {fileID: 11500000, guid: dac3bc19e906fa64790c9e04e67e59f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 6657627344074047070}
   cleaningRecipeSOArray:
   - {fileID: 11400000, guid: e0715cbd2086a364797df281a64248f1, type: 2}
+  depositionMiniGame: {fileID: 0}
 --- !u!4 &6657627344074047070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8857450968592449025, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}
@@ -646,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f6bd14ca18ec44e931d6e81be2fb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCounter: {fileID: 3046402251949177235}
+  baseCounter: {fileID: 7413861498368051233}
   visualGameObjectArray:
   - {fileID: 3809000788676948715}
   - {fileID: 5574648923638300949}
