@@ -14,19 +14,20 @@ public class fill_up_bar_script : MonoBehaviour
     public float growthCooldown = 0.15f;
     public Vector3 targetVector;
     public float etchTolerance;
-    private Vector3 scaleVector = new Vector3 (0.05f,0,0);
-    private Vector3 resetVector = new Vector3 (0,1,1);
+    private Vector3 scaleVector = new Vector3 (8f,0,0);
+    private Vector3 resetVector;// = new Vector3 (0,1,1);
     //Counts how many more times the player is allowed to dip the wafer
     public int dipsLeft;
-
+    [SerializeField] private GameObject etchingTopLevel;
     public bool minigame_active = false;
     
     void Start()
     {
+        resetVector = transform.localScale;
         //target vector is size of target
-        targetVector = new Vector3 (target.transform.localScale.x*2.25f, target.transform.localScale.y,target.transform.localScale.z);
+        targetVector = new Vector3 (280f, target.transform.localScale.y,target.transform.localScale.z);
         //bar width starts at 0
-        transform.localScale = new Vector3 (0,1,1);
+        // transform.localScale = new Vector3 (0,1,1);
         announcer.text = "ETCH!";
         dipsLeft = 3;
     }
@@ -53,9 +54,10 @@ public class fill_up_bar_script : MonoBehaviour
         }
         //State 1: Wafer has been lowered into the acid, etching process is happening
         if(barGrowing){
-            Debug.Log("Bar Growing");
+            // Debug.Log("Bar Growing");
             
-            acidRenderer.sortingLayerID = SortingLayer.NameToID("Acid high");
+            // acidRenderer.sortingLayerID = SortingLayer.NameToID("Acid high");
+            gameObject.transform.SetAsFirstSibling();
             if(timer <= growthCooldown){
                 timer += Time.deltaTime;
             }else{
@@ -66,7 +68,8 @@ public class fill_up_bar_script : MonoBehaviour
             
         //State 2: Wafer is above acid, etching process is paused
         }else{
-            acidRenderer.sortingLayerID = SortingLayer.NameToID("Acid low");
+            // acidRenderer.sortingLayerID = SortingLayer.NameToID("Acid low");
+            gameObject.transform.SetAsLastSibling();
             counter.text = dipsLeft.ToString();
 
 
@@ -74,11 +77,15 @@ public class fill_up_bar_script : MonoBehaviour
             if(endResult == 1){
                 dipsLeft = 0;
                 announcer.text = "You won!";
+                GameInputs.Instance.EnablePlayerActions();
+                Destroy(etchingTopLevel, 0.5f);
             }else if(dipsLeft == 0){
                 if(endResult == 0){
                     announcer.text = "You under etched!";
+                    Invoke("Reset", 1f);
                 }else if(endResult == 2){
                     announcer.text = "You over etched!";
+                    Invoke("Reset", 1f);
                 }
             }
         }  
@@ -106,16 +113,16 @@ public class fill_up_bar_script : MonoBehaviour
         minigame_active = true;
     }
 
-    public void reset()
+    public void Reset()
     {
         transform.localScale = resetVector;
-        minigame_active = false;
+        // minigame_active = false;
         //target vector is size of target
-        targetVector = new Vector3 (target.transform.localScale.x*2.25f, target.transform.localScale.y,target.transform.localScale.z);
+        targetVector = new Vector3 (280f, target.transform.localScale.y,target.transform.localScale.z);
         //bar width starts at 0
-        transform.localScale = new Vector3 (0,1,1);
+        // transform.localScale = new Vector3 (0,1,1);
         announcer.text = "ETCH!";
         dipsLeft = 3;
-        Debug.Log("etching reset");
+        // Debug.Log("etching reset");
     }
 }

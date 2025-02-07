@@ -7,7 +7,9 @@ public static class Loader
     public enum Scene
     {
         MainMenu,
+        LevelSelect,
         Level1,
+        Level2,
         LoadingScene
     }
 

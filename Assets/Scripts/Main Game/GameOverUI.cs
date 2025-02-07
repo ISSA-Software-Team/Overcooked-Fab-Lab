@@ -1,16 +1,24 @@
 using TMPro;
+using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI recipesDeliveredText;
+    [SerializeField] private Button mainMenuButton;
 
-
-    private void Start()
+    private void Awake()
     {
         GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+        mainMenuButton.onClick.AddListener(() => {
+            Time.timeScale = 1f;
+            Loader.Load(Loader.Scene.MainMenu);
+        });
         Hide();
     }
+
+
 
     private void GameManager_OnStateChanged(object sender, System.EventArgs e)
     {

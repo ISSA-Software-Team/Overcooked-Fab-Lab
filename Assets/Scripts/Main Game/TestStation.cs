@@ -77,22 +77,22 @@ public class TestStation : MonoBehaviour, Interactable_Interface
 
     private void reset_deactivate_script()
     {
-        if (_minigame_with_script_to_activate != null)
-        {
-            etching_script = _minigame_with_script_to_activate.GetComponent<fill_up_bar_script>();
+        // if (_minigame_with_script_to_activate != null)
+        // {
+        //     etching_script = _minigame_with_script_to_activate.GetComponent<fill_up_bar_script>();
 
-            if (etching_script != null)
-            {
-                etching_script.reset();
-            }
-            else
-            {
-                Debug.LogError("Fill_up_bar_script not found on the GameObject with tag 'Etching'.");
-            }
-        }
-        else
-        {
-            Debug.LogError("No GameObject found with tag 'Etching'.");
-        }
+        //     if (etching_script != null)
+        //     {
+        //         etching_script.reset();
+        //     }
+        //     else
+        //     {
+        //         Debug.LogError("Fill_up_bar_script not found on the GameObject with tag 'Etching'.");
+        //     }
+        // }
+        // else
+        // {
+        //     Debug.LogError("No GameObject found with tag 'Etching'.");
+        // }
     }
 }
