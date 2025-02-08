@@ -7,6 +7,7 @@ public class LevelSelect : MonoBehaviour
 {
     [SerializeField] private Button level1Button;
     [SerializeField] private Button level2Button;
+    [SerializeField] private Button level3Button;
 
     private void Awake()
     {
@@ -16,6 +17,10 @@ public class LevelSelect : MonoBehaviour
 
         level2Button.onClick.AddListener(() => {  
             Loader.Load(Loader.Scene.Level2);
+        });
+
+        level3Button.onClick.AddListener(() => {  
+            Loader.Load(Loader.Scene.Level3);
         });
     }
 }
