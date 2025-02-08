@@ -1,5 +1,3 @@
-using System.Net.NetworkInformation;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class DepostionGameManager : MonoBehaviour
