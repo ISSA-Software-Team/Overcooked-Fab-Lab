@@ -84,6 +84,7 @@ public class Clickable : MonoBehaviour, IPointerClickHandler
     public void Reset()
     {
         isInputEnabled = true;
+        current = 0;
         foreach (GameObject circle in circles)
         {
             if (circle.transform.TryGetComponent<Image>(out var spriteRenderer))

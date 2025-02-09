@@ -17,12 +17,12 @@ public class BaseCounter : MonoBehaviour, IFabObjectParent
 
     public virtual void Interact(Player player)
     {
-        Debug.Log("BaseCounter.Interact should not be triggered");
+        // Debug.Log("BaseCounter.Interact should not be triggered");
     }
 
     public virtual void InteractAlternate(Player player)
     {
-        Debug.Log("BaseCounter.Interact should not be triggered");
+        // Debug.Log("BaseCounter.Interact should not be triggered");
     }
 
     

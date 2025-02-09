@@ -33,6 +33,7 @@ public class Growth : MonoBehaviour
 
     public void Reset()
     {
+        isGrowing = false;
         transform.localScale   = origHeight;
         transform.position     = origPositionY;
     }
