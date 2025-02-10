@@ -20,6 +20,7 @@ public class fill_up_bar_script : MonoBehaviour
     public int dipsLeft;
     [SerializeField] private GameObject etchingTopLevel;
     public bool minigame_active = false;
+    [SerializeField] private GameObject etchant;
     
     void Start()
     {
@@ -28,7 +29,7 @@ public class fill_up_bar_script : MonoBehaviour
         targetVector = new Vector3 (280f, target.transform.localScale.y,target.transform.localScale.z);
         //bar width starts at 0
         // transform.localScale = new Vector3 (0,1,1);
-        announcer.text = "ETCH!";
+        // announcer.text = "ETCH!";
         dipsLeft = 3;
     }
 
@@ -47,17 +48,20 @@ public class fill_up_bar_script : MonoBehaviour
         //Invert state if spacebar is pressed
         if(Input.GetKeyDown(KeyCode.Space) && dipsLeft > 0){
             barGrowing = !barGrowing;
+            
             //dipsLeft is only decremented when the wafer is outside the acid
             if(!barGrowing){
                 dipsLeft--;
+                if(dipsLeft > 0) announcer.text = "Checking!";
             }
         }
         //State 1: Wafer has been lowered into the acid, etching process is happening
         if(barGrowing){
             // Debug.Log("Bar Growing");
-            
+            if(dipsLeft > 0) announcer.text = "Etching!";
             // acidRenderer.sortingLayerID = SortingLayer.NameToID("Acid high");
             gameObject.transform.SetAsFirstSibling();
+            etchant.transform.SetAsLastSibling();
             if(timer <= growthCooldown){
                 timer += Time.deltaTime;
             }else{
@@ -68,8 +72,10 @@ public class fill_up_bar_script : MonoBehaviour
             
         //State 2: Wafer is above acid, etching process is paused
         }else{
+            if(dipsLeft > 0) announcer.text = "Checking!";
             // acidRenderer.sortingLayerID = SortingLayer.NameToID("Acid low");
             gameObject.transform.SetAsLastSibling();
+            etchant.transform.SetAsFirstSibling();
             counter.text = dipsLeft.ToString();
 
 
@@ -82,9 +88,11 @@ public class fill_up_bar_script : MonoBehaviour
             }else if(dipsLeft == 0){
                 if(endResult == 0){
                     announcer.text = "You under etched!";
+                    minigame_active = false;
                     Invoke("Reset", 1f);
                 }else if(endResult == 2){
                     announcer.text = "You over etched!";
+                    minigame_active = false;
                     Invoke("Reset", 1f);
                 }
             }
@@ -115,14 +123,19 @@ public class fill_up_bar_script : MonoBehaviour
 
     public void Reset()
     {
+        timer = 0;
+        endResult = -1; 
         transform.localScale = resetVector;
         // minigame_active = false;
         //target vector is size of target
         targetVector = new Vector3 (280f, target.transform.localScale.y,target.transform.localScale.z);
         //bar width starts at 0
         // transform.localScale = new Vector3 (0,1,1);
-        announcer.text = "ETCH!";
+        // announcer.text = "ETCH!";
+        barGrowing = false;
         dipsLeft = 3;
+        counter.text = dipsLeft.ToString();
+        minigame_active = true;
         // Debug.Log("etching reset");
     }
 }

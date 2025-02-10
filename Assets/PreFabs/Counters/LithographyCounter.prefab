@@ -310,6 +310,7 @@ MonoBehaviour:
   counterTopPoint: {fileID: 6657627344074047070}
   lithoRecipeSOArray:
   - {fileID: 11400000, guid: f84dcfa02be69644ba6249a10da18e6a, type: 2}
+  lithographyMiniGame: {fileID: 3569678117866144362, guid: 334a50c38a42bad49bc9f5ddac6e359a, type: 3}
 --- !u!4 &6657627344074047070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8857450968592449025, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}

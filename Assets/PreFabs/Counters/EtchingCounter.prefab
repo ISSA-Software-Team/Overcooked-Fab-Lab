@@ -179,6 +179,7 @@ MonoBehaviour:
   counterTopPoint: {fileID: 6657627344074047070}
   etchingRecipeSOArray:
   - {fileID: 11400000, guid: 5243d67570e16cb46972978165410dd5, type: 2}
+  etchingMiniGame: {fileID: 3634839038399354265, guid: 2c701e2da5c5382448a6381a643fbaf3, type: 3}
 --- !u!4 &6657627344074047070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8857450968592449025, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}

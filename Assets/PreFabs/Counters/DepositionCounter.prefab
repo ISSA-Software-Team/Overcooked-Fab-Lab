@@ -94,7 +94,7 @@ MonoBehaviour:
   counterTopPoint: {fileID: 6657627344074047070}
   cleaningRecipeSOArray:
   - {fileID: 11400000, guid: e0715cbd2086a364797df281a64248f1, type: 2}
-  depositionMiniGame: {fileID: 0}
+  depositionMiniGame: {fileID: 4328240368796876243, guid: 9e9e31d954152d7408ff899e5ec10647, type: 3}
 --- !u!4 &6657627344074047070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8857450968592449025, guid: 8794e02f5c2afd348a66bdcd73cc3eaf, type: 3}
