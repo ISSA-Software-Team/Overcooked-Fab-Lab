@@ -15,3 +15,4 @@ MonoBehaviour:
   fabObjectSOList:
   - {fileID: 11400000, guid: 1dc54bc7f3fc2da49ab1667bb1ffd564, type: 2}
   recipeName: Metalized Wafer
+  score: 15

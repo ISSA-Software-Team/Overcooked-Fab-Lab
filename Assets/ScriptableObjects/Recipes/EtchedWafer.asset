@@ -15,3 +15,4 @@ MonoBehaviour:
   fabObjectSOList:
   - {fileID: 11400000, guid: 5c14249b240ad8e47bd9fe9a047e3d17, type: 2}
   recipeName: Etched Wafer
+  score: 12

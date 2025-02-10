@@ -15,3 +15,4 @@ MonoBehaviour:
   fabObjectSOList:
   - {fileID: 11400000, guid: 9507cbe507d935047a0310c8099c9e17, type: 2}
   recipeName: Deposited Wafer
+  score: 3

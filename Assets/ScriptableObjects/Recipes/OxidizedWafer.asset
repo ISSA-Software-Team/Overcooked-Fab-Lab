@@ -15,3 +15,4 @@ MonoBehaviour:
   fabObjectSOList:
   - {fileID: 11400000, guid: 6ec9cd1ee4c0a0b4ca4740752ffaf90e, type: 2}
   recipeName: Oxidized Wafer
+  score: 3

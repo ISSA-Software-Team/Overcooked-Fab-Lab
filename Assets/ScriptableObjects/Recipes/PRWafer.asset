@@ -15,3 +15,4 @@ MonoBehaviour:
   fabObjectSOList:
   - {fileID: 11400000, guid: 232951cf8255da847bbf25600f11f840, type: 2}
   recipeName: Lithography Wafer
+  score: 8
