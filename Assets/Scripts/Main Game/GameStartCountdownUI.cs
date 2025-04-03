@@ -6,10 +6,12 @@ using UnityEngine.Rendering;
 public class GameStartCountdownUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private GameObject chalkBoard;
 
     private void Start()
     {
         GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+        chalkBoard.SetActive(false);
         Hide();
     }
 
@@ -33,10 +35,12 @@ public class GameStartCountdownUI : MonoBehaviour
     private void Show()
     {
         gameObject.SetActive(true);
+        chalkBoard.SetActive(true);
     }
 
     private void Hide()
     {
         gameObject.SetActive(false);
+        chalkBoard.SetActive(false);
     }
 }
